@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import MeditationList from './components/MeditationList.vue'
+import AppHeader from './components/AppHeader.vue'
 </script>
 
 <template>
-  <MeditationList />
+  <AppHeader />
+  <RouterView />
 </template>
 
 <style scoped></style>

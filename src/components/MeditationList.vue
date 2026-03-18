@@ -42,7 +42,7 @@ onMounted(() => {
 .meditation-card {
   background-color: #f2ede6;
   border-radius: var(--radius-lg);
-  padding: var(--space-6);
+  padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
