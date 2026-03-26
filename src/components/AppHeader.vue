@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router';
+import { useAuthStore } from '@/store/auth';
+import { useRouter } from 'vue-router';
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+const logout = () => {
+  authStore.logout();
+  router.push({ name: 'login' });
+};
 </script>
 
 <template>
@@ -53,7 +63,7 @@ import { RouterLink } from 'vue-router'
         <span>Статистика</span>
       </RouterLink>
 
-      <button class="header__nav-item">
+      <button class="header__nav-item" @click="logout">
         <svg
           width="20"
           height="20"

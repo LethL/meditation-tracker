@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMeditationsStore } from '@/store/Meditations'
+import { useMeditationsStore } from '@/store/meditations'
 import { formatDate } from '@/utils/formatDate'
 import { onMounted } from 'vue'
 

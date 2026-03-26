@@ -1,18 +1,34 @@
 <script setup lang="ts">
-import MeditationList from '@/components/MeditationList.vue'
+import AppHeader from '@/components/AppHeader.vue';
+import MeditationList from '@/components/MeditationList.vue';
+import { useProfileStore } from '@/store/profile';
+import { useStatsStore } from '@/store/stats';
+import { onMounted } from 'vue';
+
+const profileStore = useProfileStore();
+const statsStore = useStatsStore();
+
+onMounted(() => {
+  profileStore.fetchProfile();
+});
+
+const addStat = async (type: string, value: number) => {
+  await statsStore.addStat(type, value);
+};
 </script>
 
 <template>
+  <AppHeader />
   <div class="home">
     <aside class="home__sidebar">
       <div class="home__avatar">
         <img src="https://i.pravatar.cc/150?img=5" alt="Аватар" />
       </div>
-      <h2 class="home__greeting">Добро пожаловать, Наталья!</h2>
+      <h2 class="home__greeting">Добро пожаловать, {{ profileStore.getProfile?.username }}!</h2>
       <p class="home__subtitle">Как вы сегодня себя чувствуете?</p>
 
       <div class="home__moods">
-        <div class="mood">
+        <div class="mood" @click="addStat('feeling_calm', 1)">
           <div class="mood__icon">
             <svg
               width="32"
@@ -30,7 +46,7 @@ import MeditationList from '@/components/MeditationList.vue'
           </div>
           <span class="mood__label">Спокойно</span>
         </div>
-        <div class="mood">
+        <div class="mood" @click="addStat('feeling_relax', 1)">
           <div class="mood__icon">
             <svg
               width="32"
@@ -48,7 +64,7 @@ import MeditationList from '@/components/MeditationList.vue'
           </div>
           <span class="mood__label">Расслабленно</span>
         </div>
-        <div class="mood">
+        <div class="mood" @click="addStat('feeling_focus', 1)">
           <div class="mood__icon">
             <svg
               width="32"
@@ -66,7 +82,7 @@ import MeditationList from '@/components/MeditationList.vue'
           </div>
           <span class="mood__label">Фокусировано</span>
         </div>
-        <div class="mood">
+        <div class="mood" @click="addStat('feeling_anxiety', 1)">
           <div class="mood__icon">
             <svg
               width="32"
