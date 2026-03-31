@@ -1,4 +1,4 @@
-import { http } from '@/api';
+import { API_ROUTES, http } from '@/api';
 import type { IMeditation } from '@/interfaces/meditation';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
@@ -17,5 +17,16 @@ export const useMeditationsStore = defineStore('meditations', () => {
     }
   };
 
-  return { meditations, fetchMeditations };
+  const addMeditationTime = async (time: number) => {
+    try {
+      await http.post<{ data: { meditation: IMeditation } }>(API_ROUTES.STATS, {
+        type: 'duration_min',
+        value: time,
+      });
+    } catch (error) {
+      console.error('Error adding meditation time:', error);
+    }
+  };
+
+  return { meditations, fetchMeditations, addMeditationTime };
 });

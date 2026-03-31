@@ -1,13 +1,20 @@
 export interface IStat {
-  ID: number;
-  CreatedAt: string;
-  UpdatedAt: string;
-  DeletedAt: string | null;
+  id: number;
+  created_at: string;
+  updated_at: string;
   user_id: number;
   date: string;
   duration_min: number;
   feeling_calm: number;
-  feeling_focus: number;
   feeling_relax: number;
+  feeling_focus: number;
   feeling_anxiety: number;
+}
+
+export interface IStatsSummary {
+  total_anxiety: number;
+  total_calm: number;
+  total_focus: number;
+  total_minutes: number;
+  total_relax: number;
 }
