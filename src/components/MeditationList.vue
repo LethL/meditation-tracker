@@ -2,8 +2,14 @@
 import { useMeditationsStore } from '@/store/meditations'
 import { formatDate } from '@/utils/formatDate'
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 const store = useMeditationsStore()
+const router = useRouter()
+
+const startMeditation = (id: number) => {
+  router.push({ name: 'timer', params: { id } })
+}
 
 onMounted(() => {
   store.fetchMeditations()
@@ -20,7 +26,7 @@ onMounted(() => {
       </div>
 
       <div class="meditation-card__footer">
-        <button class="meditation-card__btn">
+        <button class="meditation-card__btn" @click="startMeditation(meditation.id)">
           Начать
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
